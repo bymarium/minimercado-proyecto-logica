@@ -2,10 +2,11 @@ package minimercado.com.co.controller;
 
 import minimercado.com.co.model.DocumentType;
 
+import java.util.Date;
+
 public class ClientController extends PersonController{
 
-  @Override
-  boolean register(DocumentType documentType, String document, String name, String lastName, String phone, String cellPhone, String email) {
+  boolean register(DocumentType documentType, String document, String name, String lastName, String phone, String cellPhone, String email, Date birthdate, boolean isFrecuency) {
     return false;
   }
 
@@ -14,8 +15,7 @@ public class ClientController extends PersonController{
     return null;
   }
 
-  @Override
-  boolean update(String currentDocument, DocumentType documentType, String document, String name, String lastName, String phone, String cellPhone, String email) {
+  boolean update(String currentDocument, DocumentType documentType, String document, String name, String lastName, String phone, String cellPhone, String email, Date birthdate, boolean isFrecuency) {
     return false;
   }
 
