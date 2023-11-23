@@ -4,11 +4,11 @@ public class Product {
   private String code;
   private String name;
   private String description;
-  private double price;
+  private float price;
   private int quantity;
   private LineProduct line;
 
-  public Product(String code, String name, String description, double price, int quantity, LineProduct line) {
+  public Product(String code, String name, String description, float price, int quantity, LineProduct line) {
     this.code = code;
     this.name = name;
     this.description = description;
@@ -44,11 +44,11 @@ public class Product {
     this.description = description;
   }
 
-  public double getPrice() {
+  public float getPrice() {
     return price;
   }
 
-  public void setPrice(double price) {
+  public void setPrice(float price) {
     this.price = price;
   }
 

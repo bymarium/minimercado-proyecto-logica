@@ -4,12 +4,12 @@ import java.util.Date;
 
 public class Client extends Person {
   private Date birthdate;
-  private boolean isFrecuent;
+  private boolean isFrequent;
 
-  public Client(DocumentType documentType, String document, String name, String lastName, String phone, String cellPhone, String email, Date birthdate, boolean isFrecuent) {
+  public Client(DocumentType documentType, String document, String name, String lastName, String phone, String cellPhone, String email, Date birthdate, boolean isFrequent) {
     super(documentType, document, name, lastName, phone, cellPhone, email);
     this.birthdate = birthdate;
-    this.isFrecuent = isFrecuent;
+    this.isFrequent = isFrequent;
   }
 
   public Client() {
@@ -23,11 +23,11 @@ public class Client extends Person {
     this.birthdate = birthdate;
   }
 
-  public boolean getIsFrecuent() {
-    return isFrecuent;
+  public boolean getIsFrequent() {
+    return isFrequent;
   }
 
-  public void setIsFrecuent(boolean frecuent) {
-    isFrecuent = frecuent;
+  public void setIsFrequent(boolean frequent) {
+    isFrequent = frequent;
   }
 }

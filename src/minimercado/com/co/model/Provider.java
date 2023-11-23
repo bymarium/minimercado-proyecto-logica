@@ -1,20 +1,19 @@
 package minimercado.com.co.model;
 
-import java.util.ArrayList;
-
 public class Provider extends Person {
   private String address;
   private String city;
-  private ArrayList<LineProduct> lineSale;
+  private LineProduct lineProduct;
 
-  public Provider(DocumentType documentType, String document, String name, String lastName, String phone, String cellPhone, String email, String address, String city, ArrayList<LineProduct> lineSale) {
+  public Provider(DocumentType documentType, String document, String name, String lastName, String phone, String cellPhone, String email, String address, String city, LineProduct lineProduct) {
     super(documentType, document, name, lastName, phone, cellPhone, email);
     this.address = address;
     this.city = city;
-    this.lineSale = lineSale;
+    this.lineProduct = lineProduct;
   }
 
   public Provider() {
+
   }
 
   public String getAddress() {
@@ -33,11 +32,11 @@ public class Provider extends Person {
     this.city = city;
   }
 
-  public ArrayList<LineProduct> getLineSale() {
-    return lineSale;
+  public LineProduct getLineProduct() {
+    return lineProduct;
   }
 
-  public void setLineSale(ArrayList<LineProduct> lineSale) {
-    this.lineSale = lineSale;
+  public void setLineProduct(LineProduct lineProduct) {
+    this.lineProduct = lineProduct;
   }
 }

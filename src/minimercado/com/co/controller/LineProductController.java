@@ -1,23 +1,15 @@
 package minimercado.com.co.controller;
 
+import minimercado.com.co.model.LineProduct;
+
 public class LineProductController {
-  public boolean register(String id, String name) {
-    return false;
-  }
-
-  public String search(String id) {
-    return "";
-  }
-
-  public boolean update(String currentId, String id, String name) {
-    return false;
-  }
-
-  public String list() {
-    return "";
-  }
-
-  public boolean delete(String id) {
-    return false;
+  private LineProduct lineProduct = new LineProduct();
+  public LineProduct register(int id, String name) {
+    try {
+      lineProduct = new LineProduct(id, name);
+      return lineProduct;
+    } catch (Exception exception) {
+      return lineProduct;
+    }
   }
 }

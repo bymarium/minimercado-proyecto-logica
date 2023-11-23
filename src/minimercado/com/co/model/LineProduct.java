@@ -1,10 +1,10 @@
 package minimercado.com.co.model;
 
 public class LineProduct {
-  private String id;
+  private int id;
   private String name;
 
-  public LineProduct(String id, String name) {
+  public LineProduct(int id, String name) {
     this.id = id;
     this.name = name;
   }
@@ -12,11 +12,11 @@ public class LineProduct {
   public LineProduct() {
   }
 
-  public String getId() {
+  public int getId() {
     return id;
   }
 
-  public void setId(String id) {
+  public void setId(int id) {
     this.id = id;
   }
 
