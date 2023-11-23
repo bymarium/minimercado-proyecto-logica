@@ -8,12 +8,11 @@ public class Product {
   private int quantity;
   private LineProduct line;
 
-  public Product(String code, String name, String description, float price, int quantity, LineProduct line) {
+  public Product(String code, String name, String description, float price, LineProduct line) {
     this.code = code;
     this.name = name;
     this.description = description;
     this.price = price;
-    this.quantity = quantity;
     this.line = line;
   }
 

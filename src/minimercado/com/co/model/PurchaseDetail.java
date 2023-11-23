@@ -15,6 +15,8 @@ public class PurchaseDetail {
   }
 
   public PurchaseDetail() {
+    this.products = new ArrayList<>();
+    this.date = new Date();
   }
 
   public Purchase getPurchase() {

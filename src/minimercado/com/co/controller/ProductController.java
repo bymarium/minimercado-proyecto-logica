@@ -9,9 +9,9 @@ import java.util.Iterator;
 public class ProductController {
   private ArrayList<Product> products = new ArrayList<Product>();
   private Product product;
-  public boolean register(String code, String name, String description, float price, int quantity, LineProduct lineProduct) {
+  public boolean register(String code, String name, String description, float price, LineProduct lineProduct) {
     try {
-      product = new Product(code, name, description, price, quantity, lineProduct);
+      product = new Product(code, name, description, price, lineProduct);
       this.products.add(product);
       return true;
     } catch (Exception exception) {
@@ -29,7 +29,6 @@ public class ProductController {
                 "\nNombre: " + value.getName() +
                 "\nDescripcion: " + value.getDescription() +
                 "\nPrecio: " + value.getPrice() +
-                "\nCantidad: " + value.getQuantity() +
                 "\nLinea de producto: " + value.getLine().getName();
 
         break;
@@ -40,7 +39,19 @@ public class ProductController {
     return result;
   }
 
-  public boolean update(String currentCode, String code, String name, String description, float price, int quantity, LineProduct lineProduct) {
+  public Product getByCode(String code) {
+    Product product = null;
+
+    for (Product value : this.products) {
+      if (value.getCode().equals(code)) {
+        product = value;
+        break;
+      }
+    }
+    return product;
+  }
+
+  public boolean update(String currentCode, String code, String name, String description, float price, LineProduct lineProduct) {
     boolean result;
 
     try {
@@ -50,7 +61,6 @@ public class ProductController {
           product.setName(name);
           product.setDescription(description);
           product.setPrice(price);
-          product.setQuantity(quantity);
           product.setLine(lineProduct);
 
           break;
@@ -73,7 +83,6 @@ public class ProductController {
                 "\nNombre: " + product.getName() +
                 "\nDescripcion: " + product.getDescription() +
                 "\nPrecio: " + product.getPrice() +
-                "\nCantidad: " + product.getQuantity() +
                 "\nLinea de producto: " + product.getLine().getName() + "\n";
       }
     }

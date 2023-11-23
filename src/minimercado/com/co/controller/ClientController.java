@@ -44,7 +44,19 @@ public class ClientController extends PersonController {
       }
     }
     return result;
-}
+  }
+
+  public Client getByDocument(String document) {
+    Client client = null;
+
+    for (Client value : this.clients) {
+      if (value.getDocument().equals(document)) {
+        client = value;
+        break;
+      }
+    }
+    return client;
+  }
 
   public boolean update(String currentDocument, DocumentType documentType, String document, String name, String lastName, String phone, String cellPhone, String email, Date birthdate, boolean isFrequent) {
     boolean result;

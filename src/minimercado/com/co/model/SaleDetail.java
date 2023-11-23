@@ -15,6 +15,8 @@ public class SaleDetail {
   }
 
   public SaleDetail() {
+    this.products = new ArrayList<>();
+    this.date = new Date();
   }
 
   public Sale getSale() {

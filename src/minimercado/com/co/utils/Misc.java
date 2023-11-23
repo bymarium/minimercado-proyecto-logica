@@ -2,8 +2,8 @@ package minimercado.com.co.utils;
 
 import javax.swing.JOptionPane;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
 import java.util.Date;
 
 public class Misc {
@@ -86,17 +86,20 @@ public class Misc {
   }
 
   public static String getString(String text) {
+    String message;
     try {
-      return JOptionPane.showInputDialog(text);
-    } catch (Exception exception) {
-      if (text.isEmpty()) {
-        showMessage("El valor ingresado es incorrecto");
+      message = JOptionPane.showInputDialog(text);
+      if (message.isEmpty()) {
+        showMessage("¡Valor ingresado incorrecto, por favor vuelva a intentarlo!");
         return getString(text);
       }
+    } catch (Exception exception) {
+      message = JOptionPane.showInputDialog(text);
+      showMessage("¡Ha ocurrido un error!");
+      return getString(message);
     }
-    return text;
+    return message;
   }
-
 
 
   public static void showMessage(String text) {
@@ -108,15 +111,14 @@ public class Misc {
   }
 
   public static Date getDate(String text) {
+    String message = getString(text);
     try {
       DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-      LocalDate localDate = LocalDate.parse(text, dateFormatter);
+      LocalDate localDate = LocalDate.parse(message, dateFormatter);
       return java.sql.Date.valueOf(localDate);
     } catch (Exception exception) {
       showMessage("¡Formato invalido!");
       return getDate(text);
     }
   }
-
-
 }

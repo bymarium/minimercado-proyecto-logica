@@ -8,7 +8,7 @@ import minimercado.com.co.model.LineProduct;
 import minimercado.com.co.utils.Misc;
 
 public class ProviderView {
-  private static ProviderController providerController = new ProviderController();
+  public ProviderController providerController = new ProviderController();
 
   public void register() {
     char register;
@@ -44,39 +44,41 @@ public class ProviderView {
     String document = Misc.getString("Ingrese el numero de documento del proveedor al cual desea consultar sus datos: ");
 
     String result = providerController.search(document);
-    if (result != null && !result.isEmpty()) {
-      Misc.showMessage(result);
-    }
+    Misc.showMessage(result);
+
   }
 
   public void update() {
     String currentDocument = Misc.getString("Ingrese el numero de documento del proveedor al cual desea actualizar sus datos: ");
 
-    String search = providerController.search(currentDocument);
-    if (search.equals(currentDocument)) {
-      Misc.showMessage("A continuacion ingrese los datos actualizados del proveedor");
+    if (!providerController.list().startsWith("¡No hay")) {
+      if (!providerController.search(currentDocument).startsWith("¡Cliente no ")) {
+        Misc.showMessage("A continuacion ingrese los datos actualizados del proveedor");
 
-      String typeDocument = Misc.optionsSelector("Seleccione el tipo de documento: ", new String[]{"Cedula de ciudadania", "Tarjeta de identidad", "Nit", "Pasaporte"});
-      DocumentTypeController documentTypeController = new DocumentTypeController();
-      DocumentType documentType = documentTypeController.register(1, typeDocument);
-      String document = Misc.getString("Ingrese el numero de documento: ");
-      String name = Misc.getString("Ingrese el nombre: ");
-      String lastName = Misc.getString("Ingrese el apellido: ");
-      String phone = Misc.getString("Ingrese el numero de telefono: ");
-      String cellPhone = Misc.getString("Ingrese el numero de celular: ");
-      String email = Misc.getString("Ingrese el correo electronico: ");
-      String address = Misc.getString("Ingrese su direccion: ");
-      String city = Misc.getString("Ingrese su ciudad: ");
-      String selectLineProduct= Misc.optionsSelector("Seleccione la linea de productos que vende: ", new String[]{"Linea de hogar", "Linea de aseo", "Linea de aseo personal", "Linea de fritas y verduras", "Linea de abarrotes", "Linea de confiteria"});
-      LineProductController lineProductController = new LineProductController();
-      LineProduct lineProduct = lineProductController.register(1, selectLineProduct);
+        String typeDocument = Misc.optionsSelector("Seleccione el tipo de documento: ", new String[]{"Cedula de ciudadania", "Tarjeta de identidad", "Nit", "Pasaporte"});
+        DocumentTypeController documentTypeController = new DocumentTypeController();
+        DocumentType documentType = documentTypeController.register(1, typeDocument);
+        String document = Misc.getString("Ingrese el numero de documento: ");
+        String name = Misc.getString("Ingrese el nombre: ");
+        String lastName = Misc.getString("Ingrese el apellido: ");
+        String phone = Misc.getString("Ingrese el numero de telefono: ");
+        String cellPhone = Misc.getString("Ingrese el numero de celular: ");
+        String email = Misc.getString("Ingrese el correo electronico: ");
+        String address = Misc.getString("Ingrese su direccion: ");
+        String city = Misc.getString("Ingrese su ciudad: ");
+        String selectLineProduct= Misc.optionsSelector("Seleccione la linea de productos que vende: ", new String[]{"Linea de hogar", "Linea de aseo", "Linea de aseo personal", "Linea de fritas y verduras", "Linea de abarrotes", "Linea de confiteria"});
+        LineProductController lineProductController = new LineProductController();
+        LineProduct lineProduct = lineProductController.register(1, selectLineProduct);
 
-      boolean result = providerController.update(currentDocument, documentType, document, name, lastName, phone, cellPhone, email, address, city, lineProduct);
+        boolean result = providerController.update(currentDocument, documentType, document, name, lastName, phone, cellPhone, email, address, city, lineProduct);
 
-      if (result) {
-        Misc.showMessage("¡El proveedor se ha actualizado exitosamente!");
+        if (result) {
+          Misc.showMessage("¡El proveedor se ha actualizado exitosamente!");
+        } else {
+          Misc.showMessage("¡No se ha podido actualizar el proveedor, intentelo nuevamente!");
+        }
       } else {
-        Misc.showMessage("¡No se ha podido actualizar el proveedor, intentelo nuevamente!");
+        Misc.showMessage("¡Cliente no encontrado, el numero de documento ingresado no coincide con los datos guardados!");
       }
     } else {
       Misc.showMessage("¡No hay registro de proveedores!");
@@ -91,16 +93,20 @@ public class ProviderView {
   public void delete() {
     String document = Misc.getString("Ingrese el numero de documento del proveedor que desea eliminar: ");
 
-    String search = providerController.search(document);
-    if (search == null || search.isEmpty()) {
+    if (!providerController.list().startsWith("¡No hay")) {
+      if (!providerController.search(document).startsWith("¡Proveedor no ")) {
+        if (providerController.delete(document)) {
+          Misc.showMessage("¡Proveedor eliminado satisfactoriamente!");
+        } else {
+          Misc.showMessage("¡No se ha podido eliminar el proveedor, intentelo nuevamente!");
+        }
+      } else {
+        Misc.showMessage("¡Proveedor no encontrado, el numero de documento ingresado no coincide con los datos guardados!");
+      }
+    } else {
       Misc.showMessage("¡No hay proveedores para listar!");
     }
 
-    if (providerController.delete(document)) {
-      Misc.showMessage("¡Proveedor eliminado satisfactoriamente!");
-    } else {
-      Misc.showMessage("¡No se ha podido eliminar el proveedor!");
-    }
 
   }
 }

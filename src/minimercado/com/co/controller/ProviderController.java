@@ -45,6 +45,18 @@ public class ProviderController extends PersonController{
     return result;
   }
 
+  public Provider getByDocument(String document) {
+    Provider provider = null;
+
+    for (Provider value : this.providers) {
+      if (value.getDocument().equals(document)) {
+        provider = value;
+        break;
+      }
+    }
+    return provider;
+  }
+
   public boolean update(String currentDocument, DocumentType documentType, String document, String name, String lastName, String phone, String cellPhone, String email, String address, String city, LineProduct lineProduct) {
     boolean result;
 
@@ -74,10 +86,10 @@ public class ProviderController extends PersonController{
 
   @Override
   public String list() {
-    String listProviders = "¡No hay clientes para listar!";
+    String listProviders = "¡No hay proveedores para listar!";
 
     if (!this.providers.isEmpty()) {
-      listProviders = "Listado de clientes: ";
+      listProviders = "Listado de proveedores: ";
       for (Provider provider : this.providers) {
         listProviders += "\nTipo documento: " + provider.getDocumentType().getName() +
                 "\nDocumento: " + provider.getDocument() +
